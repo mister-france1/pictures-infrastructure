@@ -177,6 +177,9 @@ resource "aws_lb_listener" "listener" {
 resource "aws_api_gateway_rest_api" "api" {
   name = "api-gateway"
   description = "Proxy to handle requests to our API"
+  binary_media_types = [
+    "multipart/form-data"
+  ]
 }
 
 resource "aws_api_gateway_resource" "resource" {
