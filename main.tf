@@ -204,7 +204,12 @@ resource "aws_api_gateway_integration" "integration" {
   type                    = "HTTP_PROXY"
   uri                     = "http://${aws_alb.application_load_balancer.dns_name}/{proxy}"
 
-  request_parameters =  {
+  request_parameters = {
     "integration.request.path.proxy" = "method.request.path.proxy"
   }
+}
+
+resource "aws_api_gateway_deployment" "dev" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  stage_name  = "dev"
 }
